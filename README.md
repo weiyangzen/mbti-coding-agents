@@ -36,6 +36,16 @@ This project transforms the Myers-Briggs Type Indicator framework into practical
 - **ESTP Entrepreneur** - Rapid development and market-focused solutions
 - **ESFP Interactive Entertainer** - User engagement and interactive experiences
 
+## Installation with npx
+
+Install all 16 agents directly to your Claude Code configuration:
+
+```bash
+npx mbti-coding-agents
+```
+
+This will automatically copy all agent configurations to `~/.claude/` directory.
+
 ## Usage
 
 Each agent file contains:

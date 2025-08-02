@@ -1,0 +1,25 @@
+{
+  "name": "mbti-coding-agents",
+  "version": "1.0.0",
+  "description": "16 specialized AI coding agents based on MBTI personality types for Claude Code",
+  "main": "index.js",
+  "bin": {
+    "mbti-agents": "./bin/install.js"
+  },
+  "scripts": {
+    "install": "node bin/install.js"
+  },
+  "keywords": [
+    "claude-code",
+    "agents",
+    "mbti",
+    "ai",
+    "coding-assistant"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "preferGlobal": true
+}
