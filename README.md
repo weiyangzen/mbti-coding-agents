@@ -2,9 +2,25 @@
 
 A comprehensive collection of 16 specialized AI coding agents, each designed around Myers-Briggs personality types to provide distinct approaches to software development challenges. Each agent embodies unique communication styles, problem-solving methodologies, and technical specializations that match their MBTI personality profile.
 
-Compatibility:
+## Quick Installation
 
-✅Claude Code
+Install all 16 agents directly to your Claude Code configuration:
+
+```bash
+npm run install
+```
+
+Or use npx for one-time installation:
+
+```bash
+npx mbti-coding-agents
+```
+
+This will automatically copy all agent configurations to `~/.claude/agents/` directory.
+
+## Compatibility
+
+✅ Claude Code
 
 ## Overview
 
