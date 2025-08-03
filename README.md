@@ -53,6 +53,23 @@ npm run uninstall
 
 The uninstaller will prompt you to select which platforms to remove agents from.
 
+## 🚀 Future Plans
+
+### MBTI Squad Command System
+- [ ] **Multi-Agent Orchestration**: Implement command-line interface to invoke multiple MBTI agents as a coordinated squad
+- [ ] **Intelligent Task Distribution**: Automatically analyze tasks and assign them to the most suitable personality types
+- [ ] **Role-Based Collaboration**: Enable agents to work together, with each handling their specialized aspects of complex projects
+- [ ] **Dynamic Agent Selection**: Smart routing system that selects optimal agent combinations based on task requirements
+- [ ] **Squad Workflows**: Pre-defined workflows where different agents handle sequential phases (planning → implementation → testing → optimization)
+- [ ] **Cross-Agent Communication**: Allow agents to pass context and build upon each other's work seamlessly
+
+### Advanced Features
+- [ ] **Custom Agent Personalities**: Tools to create hybrid agents or customize existing personality profiles
+- [ ] **Performance Analytics**: Track which agents perform best for different types of tasks
+- [ ] **Learning System**: Agents that adapt and improve based on user feedback and success patterns
+
+*The vision: Instead of manually selecting individual agents, simply describe your project and let the MBTI squad automatically organize itself to tackle different aspects with the most suitable personalities leading their areas of expertise.*
+
 ## Platform-Specific Features
 
 ### Claude Code
