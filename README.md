@@ -2,25 +2,50 @@
 
 A comprehensive collection of 16 specialized AI coding agents, each designed around Myers-Briggs personality types to provide distinct approaches to software development challenges. Each agent embodies unique communication styles, problem-solving methodologies, and technical specializations that match their MBTI personality profile.
 
-## Quick Installation
+## Installation
 
-Install all 16 agents directly to your Claude Code configuration:
+### Local Installation
+Clone this repository and install all 16 agents to your Claude Code configuration:
 
 ```bash
+git clone https://github.com/your-username/mbti-coding-agents.git
+cd mbti-coding-agents
 npm run install
 ```
 
-Or use npx for one-time installation:
+### Global Installation
+Install globally and use anywhere:
+
+```bash
+npm install -g mbti-coding-agents
+mbti-agents
+```
+
+### One-time Installation
+Use npx for one-time installation without cloning:
 
 ```bash
 npx mbti-coding-agents
 ```
 
-This will automatically copy all agent configurations to `~/.claude/agents/` directory.
+All methods will copy the agent `.md` files from `claude/agents/` to `~/.claude/agents/` directory.
+
+## Uninstallation
+
+To remove all installed agents:
+
+```bash
+npm run uninstall
+```
+
+## Model Configuration
+
+All agents are pre-configured to use **Claude Opus** (`model: opus`) for optimal performance and advanced reasoning capabilities.
 
 ## Compatibility
 
-✅ Claude Code
+✅ Claude Code  
+✅ Any system supporting `.md` agent configurations
 
 ## Overview
 
@@ -60,7 +85,7 @@ Install all 16 agents directly to your Claude Code configuration:
 npx mbti-coding-agents
 ```
 
-This will automatically copy all agent configurations to `~/.claude/` directory.
+This will automatically copy all agent configurations from `claude/agents/` to `~/.claude/agents/` directory.
 
 ## Usage
 
