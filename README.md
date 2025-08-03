@@ -4,14 +4,29 @@ A comprehensive collection of 16 specialized AI coding agents, each designed aro
 
 ## Installation
 
+### Quick Start
+```bash
+git clone https://github.com/your-username/mbti-coding-agents.git
+cd mbti-coding-agents
+npm run install
+```
+
+The installer supports both **Claude Code** and **Gemini CLI** platforms with interactive selection.
+
 ### Local Installation
-Clone this repository and install all 16 agents to your Claude Code configuration:
+Clone this repository and install agents to your preferred platform(s):
 
 ```bash
 git clone https://github.com/your-username/mbti-coding-agents.git
 cd mbti-coding-agents
 npm run install
 ```
+
+The installer will prompt you to select:
+- ✅ **Claude Code** (`~/.claude/agents/`) - with `model: opus` configuration
+- ✅ **Gemini CLI** (`~/.gemini/agents/`) - without model specification
+
+Both options are selected by default.
 
 ### Global Installation
 Install globally and use anywhere:
@@ -28,23 +43,38 @@ Use npx for one-time installation without cloning:
 npx mbti-coding-agents
 ```
 
-All methods will copy the agent `.md` files from `claude/agents/` to `~/.claude/agents/` directory.
-
 ## Uninstallation
 
-To remove all installed agents:
+Remove installed agents from selected platforms:
 
 ```bash
 npm run uninstall
 ```
 
-## Model Configuration
+The uninstaller will prompt you to select which platforms to remove agents from.
 
-All agents are pre-configured to use **Claude Opus** (`model: opus`) for optimal performance and advanced reasoning capabilities.
+## Platform-Specific Features
+
+### Claude Code
+- **Model Configuration**: Pre-configured with `model: opus` for optimal performance
+- **Location**: `~/.claude/agents/`
+- **Features**: Full frontmatter metadata with model specification
+
+### Gemini CLI  
+- **Model Configuration**: No model specification (uses system default)
+- **Location**: `~/.gemini/agents/`
+- **Features**: Clean frontmatter without model constraints
+
+### Auggie (augment-cli)
+- **Status**: 🚧 Work in progress
+- **Expected Location**: `~/.auggie/agents/` (planned)
+- **Features**: TBD - Configuration format under development
 
 ## Compatibility
 
-✅ Claude Code  
+✅ **Claude Code** - Full support with Opus model configuration  
+✅ **Gemini CLI** - Full support with flexible model selection  
+🚧 **Auggie (augment-cli)** - Work in progress  
 ✅ Any system supporting `.md` agent configurations
 
 ## Overview
@@ -77,15 +107,16 @@ This project transforms the Myers-Briggs Type Indicator framework into practical
 - **ESTP Entrepreneur** - Rapid development and market-focused solutions
 - **ESFP Interactive Entertainer** - User engagement and interactive experiences
 
-## Installation with npx
+## Development
 
-Install all 16 agents directly to your Claude Code configuration:
+### Generate Gemini CLI Agents
+To regenerate the Gemini CLI versions (without model specification):
 
 ```bash
-npx mbti-coding-agents
+npm run generate-gemini
 ```
 
-This will automatically copy all agent configurations from `claude/agents/` to `~/.claude/agents/` directory.
+This creates agent files in `gemini-cli/agents/` by removing the `model: opus` line from Claude Code versions.
 
 ## Usage
 

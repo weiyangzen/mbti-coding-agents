@@ -8,7 +8,8 @@
   },
   "scripts": {
     "install": "node bin/install.js",
-    "uninstall": "node bin/uninstall.js"
+    "uninstall": "node bin/uninstall.js",
+    "generate-gemini": "node bin/generate-gemini-agents.js"
   },
   "keywords": [
     "claude-code",
@@ -21,6 +22,9 @@
   "license": "MIT",
   "engines": {
     "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.6"
   },
   "preferGlobal": true
 }
