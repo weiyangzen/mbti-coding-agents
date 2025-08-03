@@ -6,7 +6,7 @@ A comprehensive collection of 16 specialized AI coding agents, each designed aro
 
 ### Quick Start
 ```bash
-git clone https://github.com/your-username/mbti-coding-agents.git
+git clone https://github.com/weiyangzen/mbti-coding-agents.git
 cd mbti-coding-agents
 npm run install
 ```
@@ -17,7 +17,7 @@ The installer supports both **Claude Code** and **Gemini CLI** platforms with in
 Clone this repository and install agents to your preferred platform(s):
 
 ```bash
-git clone https://github.com/your-username/mbti-coding-agents.git
+git clone https://github.com/weiyangzen/mbti-coding-agents.git
 cd mbti-coding-agents
 npm run install
 ```
