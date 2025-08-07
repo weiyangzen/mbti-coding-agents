@@ -56,11 +56,11 @@ The uninstaller will prompt you to select which platforms to remove agents from.
 ## 🚀 Future Plans
 
 ### MBTI Squad Command System
-- [ ] **Multi-Agent Orchestration**: Implement command-line interface to invoke multiple MBTI agents as a coordinated squad
-- [ ] **Intelligent Task Distribution**: Automatically analyze tasks and assign them to the most suitable personality types
-- [ ] **Role-Based Collaboration**: Enable agents to work together, with each handling their specialized aspects of complex projects
-- [ ] **Dynamic Agent Selection**: Smart routing system that selects optimal agent combinations based on task requirements
-- [ ] **Squad Workflows**: Pre-defined workflows where different agents handle sequential phases (planning → implementation → testing → optimization)
+- [x] **Multi-Agent Orchestration**: Intelligent `/squad` command for Claude Code that analyzes projects and recommends optimal MBTI team compositions
+- [x] **Intelligent Task Distribution**: Automatically analyze project requirements across multiple dimensions (pragmatism, innovation, feasibility, timing, risk)
+- [x] **Role-Based Collaboration**: Detailed role assignments and collaboration patterns for each recommended MBTI type
+- [x] **Dynamic Agent Selection**: Smart algorithm that selects 3-5 complementary agents based on cognitive function analysis
+- [x] **Squad Workflows**: Phase-based workflows with clear role distribution and decision-making frameworks
 - [ ] **Cross-Agent Communication**: Allow agents to pass context and build upon each other's work seamlessly
 
 ### Advanced Features
@@ -137,12 +137,55 @@ This creates agent files in `gemini-cli/agents/` by removing the `model: opus` l
 
 ## Usage
 
+### Individual Agents
 Each agent file contains:
 - **Frontmatter metadata** with name, description, usage examples, and color coding
 - **Detailed personality profile** explaining their approach and specializations
 - **Communication style guidelines** for authentic interaction patterns
 - **Technical focus areas** where they excel
 - **Methodology frameworks** for consistent problem-solving approaches
+
+### Squad Command (Claude Code)
+The `/squad` command provides intelligent team formation for optimal project planning:
+
+**Basic Usage:**
+```bash
+/squad [project description]
+```
+
+**Examples:**
+```bash
+/squad 构建一个电商平台的支付系统
+/squad Build a real-time chat application with React and Node.js
+/squad 优化现有数据库查询性能，减少响应时间
+/squad Design and implement a machine learning recommendation engine
+```
+
+**Features:**
+- 🎯 **Dynamic Team Selection**: Intelligently selects 3-5 MBTI types based on specific project requirements
+- 🧠 **Cognitive Complementarity**: MBTI-based team selection for optimal cognitive diversity
+- ⚖️ **Balanced Considerations**: Pragmatism, innovation, feasibility, timing, and risk management
+- 📋 **Detailed Recommendations**: Role assignments, collaboration patterns, risk mitigation strategies
+- 🌐 **Bilingual Support**: Chinese and English analysis and recommendations
+- 🔄 **Adaptive Configuration**: Different projects get different team compositions
+
+**Analysis Dimensions:**
+1. **存量工作务实性** - Legacy work pragmatism
+2. **创新新颖性** - Innovation novelty
+3. **创新可落地性** - Innovation feasibility
+4. **时间节点合理性** - Timeline reasonableness
+5. **风险识别与缓解** - Risk identification & mitigation
+6. **团队协作效率** - Team collaboration efficiency
+7. **技术复杂度管理** - Technical complexity management
+8. **利益相关者管理** - Stakeholder management
+
+**Dynamic Team Examples:**
+- **E-commerce Payment** → ESTJ + ISFJ + INTJ (Business optimization + Security + Architecture)
+- **AI/ML Project** → INTP + INTJ + ENTP (Research + Architecture + Innovation)
+- **UI/UX Design** → ISFP + ENFP + ESFJ (Aesthetics + User experience + User care)
+- **Performance Optimization** → ISTP + INTJ + ISTJ (Troubleshooting + Architecture + Standards)
+- **Rapid MVP Development** → ESTP + ENTP + ENTJ (Fast execution + Innovation + Management)
+- **Legacy System Maintenance** → ISFJ + ISTJ + INTJ (Code protection + Standards + Re-architecture)
 
 ## When to Use Each Agent
 

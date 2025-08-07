@@ -9,7 +9,8 @@
   "scripts": {
     "install": "node bin/install.js",
     "uninstall": "node bin/uninstall.js",
-    "generate-gemini": "node bin/generate-gemini-agents.js"
+    "generate-gemini": "node bin/generate-gemini-agents.js",
+    "test-squad": "node test-squad-command.js"
   },
   "keywords": [
     "claude-code",
