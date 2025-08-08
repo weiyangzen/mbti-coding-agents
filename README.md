@@ -2,20 +2,14 @@
 
 A comprehensive collection of 16 specialized AI coding agents, each designed around Myers-Briggs personality types to provide distinct approaches to software development challenges. Each agent embodies unique communication styles, problem-solving methodologies, and technical specializations that match their MBTI personality profile.
 
+<!-- Language Navigation -->
+**Languages:** [**English**](README.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [Português (BR)](README.pt-BR.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [한국어](README.ko.md) | [العربية](README.ar.md)
+
+---
+
 ## Installation
 
 ### Quick Start
-```bash
-git clone https://github.com/weiyangzen/mbti-coding-agents.git
-cd mbti-coding-agents
-npm run install
-```
-
-The installer supports both **Claude Code** and **Gemini CLI** platforms with interactive selection.
-
-### Local Installation
-Clone this repository and install agents to your preferred platform(s):
-
 ```bash
 git clone https://github.com/weiyangzen/mbti-coding-agents.git
 cd mbti-coding-agents
@@ -27,21 +21,6 @@ The installer will prompt you to select:
 - ✅ **Gemini CLI** (`~/.gemini/agents/`) - without model specification
 
 Both options are selected by default.
-
-### Global Installation
-Install globally and use anywhere:
-
-```bash
-npm install -g mbti-coding-agents
-mbti-agents
-```
-
-### One-time Installation
-Use npx for one-time installation without cloning:
-
-```bash
-npx mbti-coding-agents
-```
 
 ## Uninstallation
 
@@ -170,37 +149,27 @@ The `/squad` command provides intelligent team formation for optimal project pla
 - 🔄 **Adaptive Configuration**: Different projects get different team compositions
 
 **Analysis Dimensions:**
-1. **存量工作务实性** - Legacy work pragmatism
-2. **创新新颖性** - Innovation novelty
-3. **创新可落地性** - Innovation feasibility
-4. **时间节点合理性** - Timeline reasonableness
-5. **风险识别与缓解** - Risk identification & mitigation
-6. **团队协作效率** - Team collaboration efficiency
-7. **技术复杂度管理** - Technical complexity management
-8. **利益相关者管理** - Stakeholder management
+1. **Legacy Work Pragmatism** - Evaluating practical approaches to existing systems and established workflows
+2. **Innovation Novelty** - Assessing the creativity and uniqueness of proposed solutions
+3. **Innovation Feasibility** - Determining the practical implementability of innovative ideas
+4. **Timeline Reasonableness** - Evaluating realistic project schedules and milestone planning
+5. **Risk Identification & Mitigation** - Identifying potential challenges and developing contingency strategies
+6. **Team Collaboration Efficiency** - Optimizing communication patterns and workflow coordination
+7. **Technical Complexity Management** - Balancing sophisticated solutions with maintainable architecture
+8. **Stakeholder Management** - Aligning technical decisions with business objectives and user needs
 
-**Dynamic Team Examples:**
-- **E-commerce Payment** → ESTJ + ISFJ + INTJ (Business optimization + Security + Architecture)
-- **AI/ML Project** → INTP + INTJ + ENTP (Research + Architecture + Innovation)
-- **UI/UX Design** → ISFP + ENFP + ESFJ (Aesthetics + User experience + User care)
-- **Performance Optimization** → ISTP + INTJ + ISTJ (Troubleshooting + Architecture + Standards)
-- **Rapid MVP Development** → ESTP + ENTP + ENTJ (Fast execution + Innovation + Management)
-- **Legacy System Maintenance** → ISFJ + ISTJ + INTJ (Code protection + Standards + Re-architecture)
 
-## When to Use Each Agent
+## Design Philosophy
 
-Choose your agent based on the type of challenge you're facing:
+As an INTP working in small development teams, I've experienced firsthand the beautiful complexity—and occasional friction—of human collaboration. We each bring unique cognitive patterns, communication styles, and problem-solving approaches to the table. Sometimes an ENFP's boundless enthusiasm perfectly complements an ISTJ's methodical precision. Other times, an INTP's theoretical deep-dive might clash with an ESTP's "ship it now" mentality.
 
-- **Need strategic planning?** → INTJ Strategic Architect or ENTJ Project Commander
-- **Stuck on a bug?** → ISTP Troubleshooter
-- **Want creative inspiration?** → INFP Creative Muse or ENFP Enthusiasm Engine
-- **Building a team process?** → ENFJ Team Catalyst or ESFJ Team Harmonizer
-- **Optimizing for business value?** → ESTJ Business Optimizer or ESTP Entrepreneur
-- **Ensuring code quality?** → ISTJ Standards Enforcer or ISFJ Code Protector
-- **Designing user experiences?** → ISFP Aesthetic Designer or ESFP Interactive Entertainer
+This project emerged from a simple realization: **if we struggle to bridge communication gaps between different personality types as humans, why not leverage AI to help us understand and work with that diversity?**
 
-## Implementation
+By creating AI agents and reusing them ( especially in KVCache which saves lots of 💰) that embody different cognitive styles, we can:
 
-These agents are designed to be used with large language models, providing distinct parameter sets and behavioral frameworks that create genuinely different coding assistance experiences. Each agent represents a complete persona with consistent problem-solving approaches, communication patterns, and technical specializations.
+- **Learn from each other**
+- **Fill blind spots**
+- **Bridge communication styles**
+- **Expand toolkit**
 
-The goal is not just different responses, but fundamentally different ways of thinking about and approaching software development challenges.
+Human beings built AI to serve humanity, built **better software through better human understanding**.

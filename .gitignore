@@ -16,6 +16,8 @@ Thumbs.db
 # IDE files
 .vscode/
 .idea/
+.kiro/
+docs
 
 # Logs
 *.log
