@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const inquirer = require('inquirer');
+const cp = require('child_process');
 
 async function main() {
   console.log('🗑️  MBTI Coding Agents Uninstaller\n');
@@ -34,6 +35,13 @@ async function main() {
     if (platform === 'claude') {
       const removed = await uninstallFromClaude();
       totalRemoved += removed;
+      // Conditionally uninstall TTS hook/script for Claude if previously installed
+      try {
+        cp.execFileSync('node', [path.join(__dirname, 'uninstall-tts.js')], { stdio: 'inherit' });
+        totalRemoved += 1;
+      } catch (e) {
+        console.warn('⚠️  Failed to uninstall TTS hook:', e.message);
+      }
     } else if (platform === 'gemini') {
       const removed = await uninstallFromGemini();
       totalRemoved += removed;

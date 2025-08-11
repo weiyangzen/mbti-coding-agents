@@ -4,10 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const inquirer = require('inquirer');
+const cp = require('child_process');
 
 async function main() {
   console.log('🤖 MBTI Coding Agents Installer\n');
-  
+
   // Ask user which platforms and components to install for
   const answers = await inquirer.prompt([
     {
@@ -31,7 +32,8 @@ async function main() {
       message: 'Select components to install:',
       choices: [
         { name: 'MBTI Agents (16 specialized coding agents)', value: 'agents', checked: true },
-        { name: 'Squad Command (Interactive team formation)', value: 'squad', checked: true }
+        { name: 'Squad Command (Interactive team formation)', value: 'squad', checked: true },
+        { name: 'Claude TTS (MiniMax summarize via Gemini)', value: 'claude-tts', checked: false }
       ],
       validate: function(answer) {
         if (answer.length < 1) {
@@ -56,6 +58,15 @@ async function main() {
         const installed = await installSquadCommand('claude');
         totalInstalled += installed;
       }
+      // Conditionally install TTS hook/script for Claude when selected
+      if (components.includes('claude-tts')) {
+        try {
+          cp.execFileSync('node', [path.join(__dirname, 'install-tts.js')], { stdio: 'inherit' });
+          totalInstalled += 1;
+        } catch (e) {
+          console.warn('⚠️  Failed to install TTS hook:', e.message);
+        }
+      }
     } else if (platform === 'gemini') {
       if (components.includes('agents')) {
         const installed = await installForGemini();
@@ -73,9 +84,9 @@ async function main() {
 
 async function installForClaude() {
   console.log('\n📦 Installing for Claude Code...');
-  
+
   const agentsDir = path.join(os.homedir(), '.claude', 'agents');
-  
+
   // Ensure the agents directory exists
   if (!fs.existsSync(agentsDir)) {
     fs.mkdirSync(agentsDir, { recursive: true });
@@ -86,9 +97,9 @@ async function installForClaude() {
 
 async function installForGemini() {
   console.log('\n📦 Installing for Gemini CLI...');
-  
+
   const agentsDir = path.join(os.homedir(), '.gemini', 'agents');
-  
+
   // Ensure the agents directory exists
   if (!fs.existsSync(agentsDir)) {
     fs.mkdirSync(agentsDir, { recursive: true });
@@ -125,15 +136,15 @@ function installAgents(sourceDir, targetDir, platformName) {
     try {
       const sourcePath = path.join(sourceAgentsDir, file);
       const targetPath = path.join(targetDir, file);
-      
+
       // Copy the file
       fs.copyFileSync(sourcePath, targetPath);
-      
+
       // Extract agent name from filename (remove .md extension)
       const agentName = path.basename(file, '.md');
       installedAgents.push(agentName);
       installedCount++;
-      
+
       console.log(`📄 Installed: ${file}`);
     } catch (error) {
       console.error(`❌ Failed to install ${file}:`, error.message);
@@ -141,6 +152,8 @@ function installAgents(sourceDir, targetDir, platformName) {
   });
 
   console.log(`\n✅ Successfully installed ${installedCount} MBTI coding agents to ${targetDir}`);
+
+
   console.log(`\nAgents installed for ${platformName}:`);
   installedAgents.forEach(agent => {
     console.log(`  • ${agent}`);
@@ -152,15 +165,15 @@ function installAgents(sourceDir, targetDir, platformName) {
 async function installSquadCommand(platform) {
   const platformName = platform === 'claude' ? 'Claude Code' : 'Gemini CLI';
   console.log(`\n🚀 Installing Squad Command for ${platformName}...`);
-  
+
   const homeDir = os.homedir();
   const commandsDir = path.join(homeDir, `.${platform}`, 'commands');
-  
+
   // Ensure the commands directory exists
   if (!fs.existsSync(commandsDir)) {
     fs.mkdirSync(commandsDir, { recursive: true });
   }
-  
+
   // Path to the squad.md file - use the new enhanced version from the project
   const squadSourcePath = path.join(__dirname, '..', 'claude', 'commands', 'squad.md');
   const squadTargetPath = path.join(commandsDir, 'squad.md');
@@ -169,7 +182,7 @@ async function installSquadCommand(platform) {
   if (!fs.existsSync(squadSourcePath)) {
     console.log(`⚠️  Squad command source not found at ${squadSourcePath}`);
     console.log('   Creating default squad command...');
-    
+
     // Create a default squad.md if it doesn't exist
     const defaultSquadContent = `---
 description: Interactive MBTI agent squad formation system with continuous table selection
@@ -209,7 +222,7 @@ $IF($ARGUMENTS == "1")
 
 示例：
 - "构建一个React仪表板并集成API"
-- "修复生产环境的性能问题" 
+- "修复生产环境的性能问题"
 - "设计用户注册登录系统"
 
 使用格式：\`/squad 1 [你的任务描述]\`
@@ -256,7 +269,7 @@ I'll now analyze your task and form an optimal MBTI agent squad using Smart Flas
 
 **Diplomats (NF):**
 - INFJ Empathetic Mentor: Gentle guidance & authentic development
-- INFP Creative Muse: Personal expression & unconventional approaches  
+- INFP Creative Muse: Personal expression & unconventional approaches
 - ENFJ Team Catalyst: Team cohesion & collaborative development
 - ENFP Enthusiasm Engine: Creative inspiration & motivational support
 
@@ -298,7 +311,7 @@ I'll analyze your task and provide AI-recommended squad configuration for your r
 
 **Diplomats (NF):**
 - INFJ Empathetic Mentor: Gentle guidance & authentic development
-- INFP Creative Muse: Personal expression & unconventional approaches  
+- INFP Creative Muse: Personal expression & unconventional approaches
 - ENFJ Team Catalyst: Team cohesion & collaborative development
 - ENFP Enthusiasm Engine: Creative inspiration & motivational support
 
@@ -316,11 +329,11 @@ I'll analyze your task and provide AI-recommended squad configuration for your r
 
 **Now generating AI recommendation for your review...**
 $ENDIF`;
-    
+
     // Write the default squad.md to source location
     fs.writeFileSync(squadSourcePath, defaultSquadContent);
   }
-  
+
   try {
     // Copy the squad.md file
     fs.copyFileSync(squadSourcePath, squadTargetPath);

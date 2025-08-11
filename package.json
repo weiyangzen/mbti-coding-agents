@@ -9,6 +9,8 @@
   "scripts": {
     "install": "node bin/install.js",
     "uninstall": "node bin/uninstall.js",
+    "install-tts": "node bin/install-tts.js",
+    "uninstall-tts": "node bin/uninstall-tts.js",
     "generate-gemini": "node bin/generate-gemini-agents.js",
     "test-squad": "node test-squad-command.js"
   },
