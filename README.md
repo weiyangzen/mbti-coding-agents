@@ -17,7 +17,6 @@ cd mbti-coding-agents
 npm run install
 ```
 
-
 > New: Optional Claude-TTS (MiniMax + Gemini) can be installed during `npm run install` by selecting the "Claude TTS" option. It reads config from `~/.claude/tts.config.json` and speaks summaries using the default voice Sweet_Girl_2.
 
 ### Key Features
@@ -54,11 +53,10 @@ cd mbti-coding-agents
 npm run install
 ```
 
-### 核心功能
-- 🎯 **动态团队选择**：为最佳项目规划提供智能 `/squad` 命令
-
 > 新增：在执行 `npm run install` 时选择“Claude TTS”开关可一并安装。配置文件位于 `~/.claude/tts.config.json`，默认音色 `Sweet_Girl_2`，由 Gemini 概要后通过 MiniMax 合成与播放。
 
+### 核心功能
+- 🎯 **动态团队选择**：为最佳项目规划提供智能 `/squad` 命令
 - 🧠 **16种独特个性**：每个助手都体现不同的MBTI特征
 - ⚖️ **平衡分析**：多维度项目评估
 - 🌐 **双语支持**：中英文分析
@@ -90,8 +88,6 @@ git clone https://github.com/weiyangzen/mbti-coding-agents.git
 cd mbti-coding-agents
 npm run install
 ```
-
-
 > 新機能：`npm run install` 実行時に「Claude TTS」を選択すると同時にインストールできます。設定は `~/.claude/tts.config.json`（既定ボイス `Sweet_Girl_2`）。Gemini で要約後、MiniMax で音声合成して再生します。
 
 ### 主要機能
@@ -124,12 +120,12 @@ Uma coleção abrangente de 16 agentes de codificação IA especializados, cada 
 ### Início Rápido
 ```bash
 git clone https://github.com/weiyangzen/mbti-coding-agents.git
-
-> Novo: Ao executar `npm run install`, selecione a opção "Claude TTS" para instalar junto. As configurações ficam em `~/.claude/tts.config.json`, voz padrão `Sweet_Girl_2`. O resumo é feito pelo Gemini e a síntese pela MiniMax.
-
 cd mbti-coding-agents
 npm run install
 ```
+
+> Novo: Ao executar `npm run install`, selecione a opção "Claude TTS" para instalar junto. As configurações ficam em `~/.claude/tts.config.json`, voz padrão `Sweet_Girl_2`. O resumo é feito pelo Gemini e a síntese pela MiniMax.
+
 
 ### Recursos Principais
 - 🎯 **Seleção Dinâmica de Equipe**: Comando inteligente `/squad` para planejamento otimizado de projeto
@@ -151,10 +147,6 @@ Ao criar agentes IA que incorporam diferentes estilos cognitivos, podemos:
 
 Os seres humanos construíram a IA para servir à humanidade, construindo **melhor software através de melhor compreensão humana**.---
 
-
-
-> Nouveau : Pendant `npm run install`, sélectionnez l’option « Claude TTS » pour l’installer. Le fichier de configuration est `~/.claude/tts.config.json`, voix par défaut `Sweet_Girl_2`. Résumé via Gemini, synthèse via MiniMax.
-
 <a id="fr"></a>
 ## 🇫🇷 Français
 
@@ -166,6 +158,8 @@ git clone https://github.com/weiyangzen/mbti-coding-agents.git
 cd mbti-coding-agents
 npm run install
 ```
+
+> Nouveau : Pendant `npm run install`, sélectionnez l’option « Claude TTS » pour l’installer. Le fichier de configuration est `~/.claude/tts.config.json`, voix par défaut `Sweet_Girl_2`. Résumé via Gemini, synthèse via MiniMax.
 
 ### Fonctionnalités Clés
 - 🎯 **Sélection Dynamique d'Équipe**: Commande intelligente `/squad` pour une planification optimale de projet
@@ -189,13 +183,12 @@ Les êtres humains ont construit l'IA pour servir l'humanité, construisant **de
 
 ---
 
-> Neu: Während `npm run install` kann die Option „Claude TTS“ ausgewählt werden. Konfiguration unter `~/.claude/tts.config.json`, Standardstimme `Sweet_Girl_2`. Zusammenfassung via Gemini, Sprachsynthese via MiniMax.
-
 
 <a id="de"></a>
 ## 🇩🇪 Deutsch
 
 Eine umfassende Sammlung von 16 spezialisierten KI-Coding-Agenten, die jeweils auf Myers-Briggs-Persönlichkeitstypen basieren und unterschiedliche Ansätze für Softwareentwicklungsherausforderungen bieten.
+
 
 ### Schnellstart
 ```bash
@@ -203,6 +196,8 @@ git clone https://github.com/weiyangzen/mbti-coding-agents.git
 cd mbti-coding-agents
 npm run install
 ```
+
+> Neu: Während `npm run install` kann die Option „Claude TTS“ ausgewählt werden. Konfiguration unter `~/.claude/tts.config.json`, Standardstimme `Sweet_Girl_2`. Zusammenfassung via Gemini, Sprachsynthese via MiniMax.
 
 ### Hauptfunktionen
 - 🎯 **Dynamische Teamauswahl**: Intelligenter `/squad` Befehl für optimale Projektplanung
@@ -225,9 +220,6 @@ Durch die Erstellung von KI-Agenten, die verschiedene kognitive Stile verkörper
 Menschen haben KI gebaut, um der Menschheit zu dienen, und **bessere Software durch besseres menschliches Verständnis** zu schaffen.---
 
 
-> 새로운 기능: `npm run install` 실행 시 "Claude TTS" 옵션을 선택하여 함께 설치할 수 있습니다. 설정 파일은 `~/.claude/tts.config.json`이며, 기본 음색은 `Sweet_Girl_2` 입니다. Gemini 요약 후 MiniMax로 합성하여 재생합니다.
-
-
 <a id="ko"></a>
 ## 🇰🇷 한국어
 
@@ -239,6 +231,8 @@ git clone https://github.com/weiyangzen/mbti-coding-agents.git
 cd mbti-coding-agents
 npm run install
 ```
+
+> 새로운 기능: `npm run install` 실행 시 "Claude TTS" 옵션을 선택하여 함께 설치할 수 있습니다. 설정 파일은 `~/.claude/tts.config.json`이며, 기본 음색은 `Sweet_Girl_2` 입니다. Gemini 요약 후 MiniMax로 합성하여 재생합니다.
 
 ### 주요 기능
 - 🎯 **동적 팀 선택**: 최적의 프로젝트 계획을 위한 지능형 `/squad` 명령
@@ -258,9 +252,6 @@ npm run install
 다양한 인지 스타일을 구현하는 AI 에이전트를 만들어서, 우리는 다음을 할 수 있습니다:
 - **서로에게서 배우기** - **맹점 채우기** - **커뮤니케이션 스타일 연결하기** - **도구 상자 확장하기**
 
-
-> جديد: عند تشغيل `npm run install`، يمكنك اختيار خيار "Claude TTS" لتثبيته. ملف الإعدادات في `~/.claude/tts.config.json`، والصوت الافتراضي `Sweet_Girl_2`. يتم التلخيص عبر Gemini ثم التخليق عبر MiniMax.
-
 인간은 인류를 섬기기 위해 AI를 만들었고, **더 나은 인간 이해를 통해 더 나은 소프트웨어**를 구축했습니다.
 
 ---
@@ -276,6 +267,8 @@ git clone https://github.com/weiyangzen/mbti-coding-agents.git
 cd mbti-coding-agents
 npm run install
 ```
+
+> جديد: عند تشغيل `npm run install`، يمكنك اختيار خيار "Claude TTS" لتثبيته. ملف الإعدادات في `~/.claude/tts.config.json`، والصوت الافتراضي `Sweet_Girl_2`. يتم التلخيص عبر Gemini ثم التخليق عبر MiniMax.
 
 ### الميزات الرئيسية
 - 🎯 **اختيار فريق ديناميكي**: أمر ذكي `/squad` لتخطيط مشروع أمثل
