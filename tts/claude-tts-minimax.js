@@ -252,8 +252,8 @@ async function summarizeWithGemini(cfg, text) {
     if (!summarized) {
       // Fallback heuristics similar to your Python fallback buckets (English lines)
       if (text.length > 100) summarized = 'Claude completed a complex task';
-      else if (/错误/i.test(text) || /error/i.test(text)) summarized = 'Claude encountered an error';
-      else if (/完成|成功/.test(text)) summarized = 'Claude successfully completed the task';
+      else if (/Error/i.test(text) || /error/i.test(text)) summarized = 'Claude encountered an error';
+      else if (/Complete|Success/.test(text)) summarized = 'Claude successfully completed the task';
       else summarized = 'Claude performed a file operation';
     }
 
