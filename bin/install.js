@@ -359,6 +359,23 @@ async function installStatusLine() {
   const settingsPath = path.join(claudeDir, 'settings.json');
   const statuslinePath = path.join(claudeDir, 'statusline.py');
 
+  // Check if ccusage is installed
+  console.log('   Checking for ccusage dependency...');
+  try {
+    cp.execSync('which ccusage', { stdio: 'ignore' });
+    console.log('   ✅ ccusage is already installed');
+  } catch (e) {
+    console.log('   📦 ccusage not found, installing it now...');
+    try {
+      cp.execSync('npm install -g ccusage', { stdio: 'inherit' });
+      console.log('   ✅ ccusage installed successfully');
+    } catch (installError) {
+      console.warn('   ⚠️  Failed to install ccusage automatically');
+      console.warn('   Please install manually: npm install -g ccusage');
+      console.warn('   Status line will show $0.00 costs without ccusage');
+    }
+  }
+
   // First, copy the statusline.py script
   const statuslineSource = path.join(__dirname, '..', 'claude', 'statusline.py');
   

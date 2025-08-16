@@ -6,12 +6,141 @@ import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
 
-def get_context_usage():
-    """Get context compression usage from Claude"""
+def get_context_usage(context):
+    """Get context usage percentage from Claude"""
     try:
-        # Try to get context usage info (this would need API access or internal info)
-        # For now, returning placeholder - would need actual implementation
-        return "75%"
+        # Check if context contains token information
+        if 'context_tokens_used' in context and 'context_tokens_limit' in context:
+            used = context['context_tokens_used']
+            limit = context['context_tokens_limit']
+            if limit > 0:
+                percentage = (used / limit) * 100
+                return f"{percentage:.0f}%"
+        
+        # Check if context has tokens_until_compact (inverse calculation)
+        elif 'tokens_until_compact' in context and 'context_tokens_limit' in context:
+            remaining = context['tokens_until_compact']
+            limit = context['context_tokens_limit']
+            if limit > 0:
+                percentage = ((limit - remaining) / limit) * 100
+                return f"{percentage:.0f}%"
+        
+        # Check if context directly provides percentage
+        elif 'context_percentage' in context:
+            return f"{context['context_percentage']:.0f}%"
+        
+        # Check for alternative field names
+        elif 'context' in context and isinstance(context['context'], dict):
+            ctx = context['context']
+            if 'usage' in ctx:
+                return f"{ctx['usage']:.0f}%"
+            elif 'percentage' in ctx:
+                return f"{ctx['percentage']:.0f}%"
+        
+        # Try to estimate based on Claude's internal calculation
+        # This mimics the obfuscated fS() function logic
+        return estimate_context_from_session(context)
+    except Exception as e:
+        return "N/A"
+
+def estimate_context_from_session(context):
+    """
+    Estimate context usage based on Claude's internal calculation.
+    Reverse engineered from obfuscated code: fS(tokenUsage) function
+    
+    Claude displays: "Context left until auto-compact: X%" (percent_left)
+    We display: percentage USED = 100 - percent_left
+    """
+    try:
+        # Constants from obfuscated code
+        YE8 = 13000  # Auto-compact threshold offset (triggers at 187k out of 200k)
+        model_limits = {
+            'opus-4': 200000,
+            'opus-4-1': 200000,
+            'sonnet-4': 200000,
+            'haiku': 200000,
+            'default': 200000
+        }
+        
+        # Get model name
+        model_name = context.get('model', {}).get('display_name', 'default').lower()
+        
+        # Find matching limit
+        max_tokens = model_limits.get('default')
+        for key in model_limits:
+            if key in model_name:
+                max_tokens = model_limits[key]
+                break
+        
+        # Try to read from transcript file if available
+        if 'transcript_path' in context:
+            try:
+                transcript_path = context['transcript_path']
+                if os.path.exists(transcript_path):
+                    # Read JSONL file and count messages/estimate tokens
+                    message_count = 0
+                    total_chars = 0
+                    with open(transcript_path, 'r') as f:
+                        for line in f:
+                            if line.strip():
+                                message_count += 1
+                                # Parse JSON line to get content length
+                                try:
+                                    msg = json.loads(line)
+                                    # Count characters in content
+                                    if isinstance(msg, dict):
+                                        content = str(msg.get('content', ''))
+                                        total_chars += len(content)
+                                except:
+                                    # Fallback: estimate 100 chars per message
+                                    total_chars += 100
+                    
+                    # Estimate tokens (roughly 4 chars per token)
+                    token_usage = total_chars // 4
+                    
+                    # Alternative: use message count if char count seems wrong
+                    if token_usage < message_count * 10:
+                        # Average message is ~100 tokens
+                        token_usage = message_count * 100
+                        
+                else:
+                    # Transcript file doesn't exist, fall back to other methods
+                    token_usage = None
+            except Exception as e:
+                # Error reading transcript, fall back to other methods
+                token_usage = None
+        else:
+            token_usage = None
+        
+        # Fall back to other estimation methods if transcript reading failed
+        if token_usage is None:
+            # Check if we have session data to estimate from
+            if 'session_tokens' in context:
+                token_usage = context['session_tokens']
+            elif 'message_count' in context:
+                # Rough estimate: average message = ~100 tokens
+                token_usage = context['message_count'] * 100
+            elif 'conversation_length' in context:
+                # Even rougher estimate based on character count
+                token_usage = context['conversation_length'] // 4  # ~4 chars per token
+            else:
+                # No data available for estimation
+                return "N/A"
+        
+        # Calculate percentage using Claude's formula
+        # Both context_used and context_left should use the same threshold (187k)
+        threshold = max_tokens - YE8  # 200000 - 13000 = 187000
+        
+        # Calculate context_used based on the same threshold Claude uses
+        # This ensures our percentage matches Claude's internal calculation
+        percent_used = round((token_usage / threshold) * 100)
+        
+        # Ensure it doesn't exceed 100%
+        percent_used = min(100, max(0, percent_used))
+        
+        # Return the percentage USED
+        return f"{percent_used:.0f}%"
+        
     except:
         return "N/A"
 
@@ -101,7 +230,7 @@ def generate_status_line(context):
     project_name = os.path.basename(current_dir) if current_dir else os.path.basename(os.getcwd())
     
     # Get context usage
-    context_usage = get_context_usage()
+    context_usage = get_context_usage(context)
     
     # Get ccusage costs
     costs = get_ccusage_costs()

@@ -5,8 +5,8 @@ node_modules/
 .claude/settings.local.json
 
 # OS generated files
-.DS_Store
-.DS_Store?
+*.DS_Store
+*.DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
@@ -17,6 +17,7 @@ Thumbs.db
 .vscode/
 .idea/
 .kiro/
+.claude/
 docs
 
 # Logs
