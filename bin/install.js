@@ -33,6 +33,7 @@ async function main() {
       choices: [
         { name: 'MBTI Agents (16 specialized coding agents)', value: 'agents', checked: true },
         { name: 'Squad Command (Interactive team formation)', value: 'squad', checked: true },
+        { name: 'Status Line (Show costs D/W/M in Claude Code)', value: 'statusline', checked: true },
         { name: 'Claude TTS (MiniMax summarize via Gemini)', value: 'claude-tts', checked: false }
       ],
       validate: function(answer) {
@@ -56,6 +57,10 @@ async function main() {
       }
       if (components.includes('squad')) {
         const installed = await installSquadCommand('claude');
+        totalInstalled += installed;
+      }
+      if (components.includes('statusline')) {
+        const installed = await installStatusLine();
         totalInstalled += installed;
       }
       // Conditionally install TTS hook/script for Claude when selected
@@ -342,6 +347,58 @@ $ENDIF`;
     return 1;
   } catch (error) {
     console.error(`❌ Failed to install Squad Command:`, error.message);
+    return 0;
+  }
+}
+
+async function installStatusLine() {
+  console.log('\n📊 Installing Status Line for Claude Code...');
+
+  const homeDir = os.homedir();
+  const claudeDir = path.join(homeDir, '.claude');
+  const settingsPath = path.join(claudeDir, 'settings.json');
+  const statuslinePath = path.join(claudeDir, 'statusline.py');
+
+  // First, copy the statusline.py script
+  const statuslineSource = path.join(__dirname, '..', 'claude', 'statusline.py');
+  
+  // Check if source exists, if not create it
+  if (!fs.existsSync(statuslineSource)) {
+    console.log('   Creating statusline.py from current version...');
+    const statuslineContent = fs.readFileSync(path.join(homeDir, '.claude', 'statusline.py'), 'utf-8');
+    fs.writeFileSync(statuslineSource, statuslineContent);
+  }
+
+  try {
+    // Copy statusline.py to .claude directory
+    fs.copyFileSync(statuslineSource, statuslinePath);
+    console.log(`✅ Copied statusline.py to ${statuslinePath}`);
+
+    // Update settings.json
+    let settings = {};
+    if (fs.existsSync(settingsPath)) {
+      const content = fs.readFileSync(settingsPath, 'utf-8');
+      try {
+        settings = JSON.parse(content);
+      } catch (e) {
+        console.warn('⚠️  Could not parse existing settings.json, creating new one');
+      }
+    }
+
+    // Add or update statusLine configuration
+    settings.statusLine = {
+      type: 'command',
+      command: statuslinePath
+    };
+
+    // Write updated settings
+    fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2));
+    console.log(`✅ Updated settings.json with statusLine configuration`);
+    console.log(`   Status line will show: Project | Model | Context | D/W/M costs`);
+    
+    return 1;
+  } catch (error) {
+    console.error(`❌ Failed to install Status Line:`, error.message);
     return 0;
   }
 }

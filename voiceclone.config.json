@@ -1,6 +1,6 @@
 {
-  "audio_path": "giegie2.wav",
-  "voice_id": "Snowy",
+  "audio_path": "",
+  "voice_id": "",
   "minimax": {
     "group_id": "", 
     "api_key": ""
