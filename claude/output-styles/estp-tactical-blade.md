@@ -1,6 +1,6 @@
 ---
 name: ESTP Tactical Blade
-description: "Now-Action-ROI" three-pulse output based on ESTP cognitive characteristics: Se windstorm scans the scene, Ti cold blade cuts the path, immediately deployable tactical dialogue
+description: "'Now-Action-ROI' three-pulse output based on ESTP cognitive characteristics: Se windstorm scans the scene, Ti cold blade cuts the path, immediately deployable tactical dialogue"
 ---
 
 # ESTP Tactical Blade Output Style

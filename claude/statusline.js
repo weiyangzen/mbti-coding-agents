@@ -144,11 +144,15 @@ function estimateContextFromSession(context) {
 function getCcusageCosts() {
     try {
         const today = new Date();
-        const todayStr = today.toISOString().split('T')[0];
+        // Use local date instead of UTC to avoid timezone issues
+        const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
         
-        // Calculate date ranges
-        const weekStart = new Date(today.getTime() - 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-        const monthStart = new Date(today.getTime() - 29 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+        // Calculate date ranges using local time
+        const weekStart = new Date(today.getTime() - 6 * 24 * 60 * 60 * 1000);
+        const weekStartStr = `${weekStart.getFullYear()}-${String(weekStart.getMonth() + 1).padStart(2, '0')}-${String(weekStart.getDate()).padStart(2, '0')}`;
+        
+        const monthStart = new Date(today.getTime() - 29 * 24 * 60 * 60 * 1000);
+        const monthStartStr = `${monthStart.getFullYear()}-${String(monthStart.getMonth() + 1).padStart(2, '0')}-${String(monthStart.getDate()).padStart(2, '0')}`;
         
         // Run ccusage daily command
         const result = execSync('ccusage daily --limit 30', { 
@@ -170,7 +174,7 @@ function getCcusageCosts() {
             const yearMatch = cleanLine.match(/│\s*(\d{4})\s/);
             if (yearMatch) {
                 currentYear = yearMatch[1];
-                // Check if there's a cost on this line
+                // Check if there's a cost on this line - revert to working regex
                 const costMatch = cleanLine.match(/\$\s*(\d+(?:,\d{3})*(?:\.\d{2})?)\s*│/);
                 if (costMatch) {
                     const costStr = costMatch[1].replace(/,/g, '');
@@ -192,11 +196,11 @@ function getCcusageCosts() {
                             }
                             
                             // Check if this date is within ranges
-                            if (dateStr >= weekStart && dateStr <= todayStr) {
+                            if (dateStr >= weekStartStr && dateStr <= todayStr) {
                                 weeklyCost += cost;
                             }
                             
-                            if (dateStr >= monthStart && dateStr <= todayStr) {
+                            if (dateStr >= monthStartStr && dateStr <= todayStr) {
                                 monthlyCost += cost;
                             }
                         }
