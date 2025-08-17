@@ -34,6 +34,7 @@ async function main() {
         { name: 'MBTI Agents (Remove all 16 agents)', value: 'agents', checked: true },
         { name: 'Squad Command (Remove /squad command)', value: 'squad', checked: true },
         { name: 'Status Line (Remove cost display)', value: 'statusline', checked: true },
+        { name: 'Output Styles (Remove 16 MBTI communication styles)', value: 'output-styles', checked: true },
         { name: 'Claude TTS (Remove TTS hooks)', value: 'claude-tts', checked: false }
       ],
       validate: function(answer) {
@@ -61,6 +62,10 @@ async function main() {
       }
       if (components.includes('statusline')) {
         const removed = await uninstallStatusLine();
+        totalRemoved += removed;
+      }
+      if (components.includes('output-styles')) {
+        const removed = await uninstallOutputStyles();
         totalRemoved += removed;
       }
       if (components.includes('claude-tts')) {
@@ -193,21 +198,33 @@ async function uninstallStatusLine() {
   const homeDir = os.homedir();
   const claudeDir = path.join(homeDir, '.claude');
   const settingsPath = path.join(claudeDir, 'settings.json');
-  const statuslinePath = path.join(claudeDir, 'statusline.py');
+  const statuslineJsPath = path.join(claudeDir, 'statusline.js');
+  const statuslinePyPath = path.join(claudeDir, 'statusline.py'); // Also check for old .py version
 
   let removedCount = 0;
 
-  // Remove statusline.py
-  if (fs.existsSync(statuslinePath)) {
+  // Remove statusline.js (current version)
+  if (fs.existsSync(statuslineJsPath)) {
     try {
-      fs.unlinkSync(statuslinePath);
-      console.log(`✅ Removed ${statuslinePath}`);
+      fs.unlinkSync(statuslineJsPath);
+      console.log(`✅ Removed ${statuslineJsPath}`);
       removedCount++;
     } catch (error) {
-      console.error(`⚠️  Failed to remove statusline.py:`, error.message);
+      console.error(`⚠️  Failed to remove statusline.js:`, error.message);
     }
   } else {
-    console.log(`ℹ️  statusline.py not found at ${statuslinePath}`);
+    console.log(`ℹ️  statusline.js not found at ${statuslineJsPath}`);
+  }
+
+  // Remove old statusline.py if exists
+  if (fs.existsSync(statuslinePyPath)) {
+    try {
+      fs.unlinkSync(statuslinePyPath);
+      console.log(`✅ Removed old ${statuslinePyPath}`);
+      removedCount++;
+    } catch (error) {
+      console.error(`⚠️  Failed to remove old statusline.py:`, error.message);
+    }
   }
 
   // Update settings.json to remove statusLine configuration
@@ -227,6 +244,58 @@ async function uninstallStatusLine() {
     } catch (error) {
       console.error(`⚠️  Failed to update settings.json:`, error.message);
     }
+  }
+
+  return removedCount;
+}
+
+async function uninstallOutputStyles() {
+  console.log('\n🗑️  Uninstalling Output Styles from Claude Code...');
+
+  const homeDir = os.homedir();
+  const outputStylesDir = path.join(homeDir, '.claude', 'output-styles');
+
+  if (!fs.existsSync(outputStylesDir)) {
+    console.log(`ℹ️  Output styles directory not found at ${outputStylesDir}`);
+    return 0;
+  }
+
+  let removedCount = 0;
+
+  try {
+    const files = fs.readdirSync(outputStylesDir).filter(file => file.endsWith('.md'));
+    
+    if (files.length === 0) {
+      console.log(`ℹ️  No output style files found to remove`);
+      return 0;
+    }
+
+    files.forEach(file => {
+      const filePath = path.join(outputStylesDir, file);
+      try {
+        fs.unlinkSync(filePath);
+        console.log(`🗑️  Removed: ${file}`);
+        removedCount++;
+      } catch (error) {
+        console.error(`❌ Failed to remove ${file}:`, error.message);
+      }
+    });
+
+    // Remove directory if empty
+    try {
+      const remainingFiles = fs.readdirSync(outputStylesDir);
+      if (remainingFiles.length === 0) {
+        fs.rmdirSync(outputStylesDir);
+        console.log(`✅ Removed empty directory: ${outputStylesDir}`);
+      }
+    } catch (error) {
+      // Ignore errors when removing directory
+      console.log(`ℹ️  Directory ${outputStylesDir} not empty, keeping it`);
+    }
+
+    console.log(`✅ Successfully removed ${removedCount} MBTI output styles`);
+  } catch (error) {
+    console.error(`❌ Failed to access output styles directory:`, error.message);
   }
 
   return removedCount;

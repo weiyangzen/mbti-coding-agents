@@ -34,6 +34,7 @@ async function main() {
         { name: 'MBTI Agents (16 specialized coding agents)', value: 'agents', checked: true },
         { name: 'Squad Command (Interactive team formation)', value: 'squad', checked: true },
         { name: 'Status Line (Show costs D/W/M in Claude Code)', value: 'statusline', checked: true },
+        { name: 'Output Styles (16 MBTI communication styles)', value: 'output-styles', checked: true },
         { name: 'Claude TTS (MiniMax summarize via Gemini)', value: 'claude-tts', checked: false }
       ],
       validate: function(answer) {
@@ -61,6 +62,10 @@ async function main() {
       }
       if (components.includes('statusline')) {
         const installed = await installStatusLine();
+        totalInstalled += installed;
+      }
+      if (components.includes('output-styles')) {
+        const installed = await installOutputStyles();
         totalInstalled += installed;
       }
       // Conditionally install TTS hook/script for Claude when selected
@@ -357,7 +362,12 @@ async function installStatusLine() {
   const homeDir = os.homedir();
   const claudeDir = path.join(homeDir, '.claude');
   const settingsPath = path.join(claudeDir, 'settings.json');
-  const statuslinePath = path.join(claudeDir, 'statusline.py');
+  const statuslinePath = path.join(claudeDir, 'statusline.js');
+
+  // Ensure .claude directory exists
+  if (!fs.existsSync(claudeDir)) {
+    fs.mkdirSync(claudeDir, { recursive: true });
+  }
 
   // Check if ccusage is installed
   console.log('   Checking for ccusage dependency...');
@@ -376,29 +386,36 @@ async function installStatusLine() {
     }
   }
 
-  // First, copy the statusline.py script
-  const statuslineSource = path.join(__dirname, '..', 'claude', 'statusline.py');
+  // Copy the statusline.js script
+  const statuslineSource = path.join(__dirname, '..', 'claude', 'statusline.js');
   
-  // Check if source exists, if not create it
+  // Check if source exists
   if (!fs.existsSync(statuslineSource)) {
-    console.log('   Creating statusline.py from current version...');
-    const statuslineContent = fs.readFileSync(path.join(homeDir, '.claude', 'statusline.py'), 'utf-8');
-    fs.writeFileSync(statuslineSource, statuslineContent);
+    console.error(`❌ Status line source not found at ${statuslineSource}`);
+    return 0;
   }
 
   try {
-    // Copy statusline.py to .claude directory
+    // Copy statusline.js to .claude directory
     fs.copyFileSync(statuslineSource, statuslinePath);
-    console.log(`✅ Copied statusline.py to ${statuslinePath}`);
+    console.log(`✅ Copied statusline.js to ${statuslinePath}`);
 
-    // Update settings.json
+    // Make it executable
+    try {
+      fs.chmodSync(statuslinePath, '755');
+    } catch (e) {
+      console.warn('⚠️  Could not make statusline.js executable, you may need to run: chmod +x ~/.claude/statusline.js');
+    }
+
+    // Update settings.json with error handling
     let settings = {};
     if (fs.existsSync(settingsPath)) {
-      const content = fs.readFileSync(settingsPath, 'utf-8');
       try {
+        const content = fs.readFileSync(settingsPath, 'utf-8');
         settings = JSON.parse(content);
       } catch (e) {
         console.warn('⚠️  Could not parse existing settings.json, creating new one');
+        settings = {};
       }
     }
 
@@ -416,8 +433,72 @@ async function installStatusLine() {
     return 1;
   } catch (error) {
     console.error(`❌ Failed to install Status Line:`, error.message);
+    console.error(`   You can manually copy ${statuslineSource} to ${statuslinePath}`);
     return 0;
   }
+}
+
+async function installOutputStyles() {
+  console.log('\n🎨 Installing Output Styles for Claude Code...');
+
+  const homeDir = os.homedir();
+  const outputStylesDir = path.join(homeDir, '.claude', 'output-styles');
+
+  // Ensure the output-styles directory exists
+  if (!fs.existsSync(outputStylesDir)) {
+    fs.mkdirSync(outputStylesDir, { recursive: true });
+  }
+
+  const currentDir = process.cwd();
+  const sourceOutputStylesDir = path.join(currentDir, 'claude', 'output-styles');
+
+  // Check if source directory exists
+  if (!fs.existsSync(sourceOutputStylesDir)) {
+    console.error(`❌ Source directory claude/output-styles not found`);
+    return 0;
+  }
+
+  const mdFiles = fs.readdirSync(sourceOutputStylesDir)
+    .filter(file => file.endsWith('.md'))
+    .sort();
+
+  if (mdFiles.length === 0) {
+    console.error(`❌ No output style .md files found in claude/output-styles directory`);
+    return 0;
+  }
+
+  // Copy each .md file to the output-styles directory
+  let installedCount = 0;
+  const installedStyles = [];
+
+  mdFiles.forEach(file => {
+    try {
+      const sourcePath = path.join(sourceOutputStylesDir, file);
+      const targetPath = path.join(outputStylesDir, file);
+
+      // Copy the file
+      fs.copyFileSync(sourcePath, targetPath);
+
+      // Extract style name from filename (remove .md extension)
+      const styleName = path.basename(file, '.md');
+      installedStyles.push(styleName);
+      installedCount++;
+
+      console.log(`🎨 Installed: ${file}`);
+    } catch (error) {
+      console.error(`❌ Failed to install ${file}:`, error.message);
+    }
+  });
+
+  console.log(`\n✅ Successfully installed ${installedCount} MBTI output styles to ${outputStylesDir}`);
+  console.log(`   These styles provide personality-tuned communication patterns for Claude Code`);
+
+  console.log(`\nOutput styles installed:`);
+  installedStyles.forEach(style => {
+    console.log(`  • ${style}`);
+  });
+
+  return installedCount;
 }
 
 // Run the main function
