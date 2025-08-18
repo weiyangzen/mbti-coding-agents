@@ -1,5 +1,24 @@
 # MBTI Coding Agents
 
+<p align="center">
+  <img src="resource/8bit_intj.gif" width="40" height="40">
+  <img src="resource/8bit_intp.gif" width="40" height="40">
+  <img src="resource/8bit_entj.gif" width="40" height="40">
+  <img src="resource/8bit_entp.gif" width="40" height="40">
+  <img src="resource/8bit_infj.gif" width="40" height="40">
+  <img src="resource/8bit_infp.gif" width="40" height="40">
+  <img src="resource/8bit_enfj.gif" width="40" height="40">
+  <img src="resource/8bit_enfp.gif" width="40" height="40">
+  <img src="resource/8bit_istj.gif" width="40" height="40">
+  <img src="resource/8bit_isfj.gif" width="40" height="40">
+  <img src="resource/8bit_estj.gif" width="40" height="40">
+  <img src="resource/8bit_esfj.gif" width="40" height="40">
+  <img src="resource/8bit_istp.gif" width="40" height="40">
+  <img src="resource/8bit_isfp.gif" width="40" height="40">
+  <img src="resource/8bit_estp.gif" width="40" height="40">
+  <img src="resource/8bit_esfp.gif" width="40" height="40">
+</p>
+
 <!-- Language Navigation -->
 **Languages:** [🇺🇸 English](#en) | [🇨🇳 中文](#zh) | [🇯🇵 日本語](#ja) | [🇧🇷 Português (BR)](#pt-br) | [🇫🇷 Français](#fr) | [🇩🇪 Deutsch](#de) | [🇰🇷 한국어](#ko) | [🇸🇦 العربية](#ar)
 
