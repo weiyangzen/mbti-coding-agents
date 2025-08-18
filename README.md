@@ -40,6 +40,9 @@ npm run install
 
 ### Key Features
 - 🎯 **Dynamic Team Selection**: Intelligent `/squad` command for optimal project planning
+- ⚔️ **Dynamic Battle Arena**: MBTI agents compete on tasks via `/battle [task] [report]`
+- 🧭 **Personal MBTI Detection**: Analyzes your coding patterns via `/my-coding-mbti`
+- 🎨 **Enhanced Communication**: Personality-tuned output styles via `/output-style [style]`
 - 🧠 **16 Unique Personalities**: Each agent embodies distinct MBTI characteristics
 - ⚖️ **Balanced Analysis**: Multi-dimensional project evaluation
 - 🌐 **Bilingual Support**: Chinese and English analysis
@@ -76,6 +79,9 @@ npm run install
 
 ### 核心功能
 - 🎯 **动态团队选择**：为最佳项目规划提供智能 `/squad` 命令
+- ⚔️ **动态对战竞技场**：MBTI智能体通过 `/battle [任务] [报告]` 竞技解题
+- 🧭 **个人MBTI检测**：通过 `/my-coding-mbti` 分析编程模式预测类型
+- 🎨 **增强沟通体验**：通过 `/output-style [风格]` 个性化输出样式
 - 🧠 **16种独特个性**：每个助手都体现不同的MBTI特征
 - ⚖️ **平衡分析**：多维度项目评估
 - 🌐 **双语支持**：中英文分析
@@ -111,6 +117,9 @@ npm run install
 
 ### 主要機能
 - 🎯 **動的チーム選択**：最適なプロジェクト計画のためのインテリジェント `/squad` コマンド
+- ⚔️ **ダイナミックバトルアリーナ**：`/battle [タスク] [レポート]` でMBTIエージェントが競技
+- 🧭 **個人MBTI検出**：`/my-coding-mbti` でコーディングパターンを分析
+- 🎨 **強化されたコミュニケーション**：`/output-style [スタイル]` で性格調整済み出力
 - 🧠 **16の独特な性格**：各エージェントが異なるMBTI特性を体現
 - ⚖️ **バランス分析**：多次元プロジェクト評価
 - 🌐 **バイリンガルサポート**：中国語と英語の分析
@@ -148,6 +157,9 @@ npm run install
 
 ### Recursos Principais
 - 🎯 **Seleção Dinâmica de Equipe**: Comando inteligente `/squad` para planejamento otimizado de projeto
+- ⚔️ **Arena de Batalha Dinâmica**: Agentes MBTI competem em tarefas via `/battle [tarefa] [relatório]`
+- 🧭 **Detecção Pessoal de MBTI**: Analisa seus padrões de codificação via `/my-coding-mbti`
+- 🎨 **Comunicação Aprimorada**: Estilos de saída ajustados à personalidade via `/output-style [estilo]`
 - 🧠 **16 Personalidades Únicas**: Cada agente incorpora características MBTI distintas
 - ⚖️ **Análise Equilibrada**: Avaliação multidimensional de projeto
 - 🌐 **Suporte Bilíngue**: Análise em chinês e inglês
@@ -182,6 +194,9 @@ npm run install
 
 ### Fonctionnalités Clés
 - 🎯 **Sélection Dynamique d'Équipe**: Commande intelligente `/squad` pour une planification optimale de projet
+- ⚔️ **Arène de Bataille Dynamique**: Les agents MBTI rivalisent sur des tâches via `/battle [tâche] [rapport]`
+- 🧭 **Détection MBTI Personnelle**: Analyse vos modèles de codage via `/my-coding-mbti`
+- 🎨 **Communication Améliorée**: Styles de sortie ajustés à la personnalité via `/output-style [style]`
 - 🧠 **16 Personnalités Uniques**: Chaque agent incarne des caractéristiques MBTI distinctes
 - ⚖️ **Analyse Équilibrée**: Évaluation multidimensionnelle de projet
 - 🌐 **Support Bilingue**: Analyse en chinois et anglais
@@ -220,6 +235,9 @@ npm run install
 
 ### Hauptfunktionen
 - 🎯 **Dynamische Teamauswahl**: Intelligenter `/squad` Befehl für optimale Projektplanung
+- ⚔️ **Dynamische Kampfarena**: MBTI-Agenten konkurrieren bei Aufgaben via `/battle [Aufgabe] [Bericht]`
+- 🧭 **Persönliche MBTI-Erkennung**: Analysiert Ihre Codierungsmuster via `/my-coding-mbti`
+- 🎨 **Verbesserte Kommunikation**: Persönlichkeitsangepasste Ausgabestile via `/output-style [Stil]`
 - 🧠 **16 Einzigartige Persönlichkeiten**: Jeder Agent verkörpert unterschiedliche MBTI-Eigenschaften
 - ⚖️ **Ausgewogene Analyse**: Mehrdimensionale Projektbewertung
 - 🌐 **Zweisprachige Unterstützung**: Chinesische und englische Analyse
@@ -255,6 +273,9 @@ npm run install
 
 ### 주요 기능
 - 🎯 **동적 팀 선택**: 최적의 프로젝트 계획을 위한 지능형 `/squad` 명령
+- ⚔️ **동적 배틀 아레나**: MBTI 에이전트가 `/battle [작업] [보고서]`로 경쟁
+- 🧭 **개인 MBTI 감지**: `/my-coding-mbti`로 코딩 패턴 분석
+- 🎨 **향상된 커뮤니케이션**: `/output-style [스타일]`로 성격 맞춤 출력
 - 🧠 **16가지 독특한 성격**: 각 에이전트가 서로 다른 MBTI 특성을 구현
 - ⚖️ **균형 잡힌 분석**: 다차원 프로젝트 평가
 - 🌐 **이중 언어 지원**: 중국어 및 영어 분석
@@ -291,6 +312,9 @@ npm run install
 
 ### الميزات الرئيسية
 - 🎯 **اختيار فريق ديناميكي**: أمر ذكي `/squad` لتخطيط مشروع أمثل
+- ⚔️ **حلبة معركة ديناميكية**: وكلاء MBTI يتنافسون في المهام عبر `/battle [مهمة] [تقرير]`
+- 🧭 **كشف MBTI الشخصي**: يحلل أنماط البرمجة الخاصة بك عبر `/my-coding-mbti`
+- 🎨 **تواصل محسن**: أنماط إخراج مضبوطة للشخصية عبر `/output-style [نمط]`
 - 🧠 **16 شخصية فريدة**: كل وكيل يجسد خصائص MBTI مميزة
 - ⚖️ **تحليل متوازن**: تقييم متعدد الأبعاد للمشروع
 - 🌐 **دعم ثنائي اللغة**: تحليل باللغتين الصينية والإنجليزية
