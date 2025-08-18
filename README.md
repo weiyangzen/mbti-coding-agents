@@ -1,8 +1,8 @@
 # MBTI Coding Agents
 
 <p align="center">
-  <img src="resource/8bit_intj.gif" width="40" height="40">
   <img src="resource/8bit_intp.gif" width="40" height="40">
+  <img src="resource/8bit_intj.gif" width="40" height="40">
   <img src="resource/8bit_entj.gif" width="40" height="40">
   <img src="resource/8bit_entp.gif" width="40" height="40">
   <img src="resource/8bit_infj.gif" width="40" height="40">
