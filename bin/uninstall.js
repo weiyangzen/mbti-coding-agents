@@ -32,7 +32,7 @@ async function main() {
       message: 'Select components to uninstall:',
       choices: [
         { name: 'MBTI Agents (Remove all 16 agents)', value: 'agents', checked: true },
-        { name: 'Squad Command (Remove /squad command)', value: 'squad', checked: true },
+        { name: 'Commands (Remove /squad, /battle, /my-coding-mbti)', value: 'commands', checked: true },
         { name: 'Status Line (Remove cost display)', value: 'statusline', checked: true },
         { name: 'Output Styles (Remove 16 MBTI communication styles)', value: 'output-styles', checked: true },
         { name: 'Claude TTS (Remove TTS hooks)', value: 'claude-tts', checked: false }
@@ -56,8 +56,8 @@ async function main() {
         const removed = await uninstallFromClaude();
         totalRemoved += removed;
       }
-      if (components.includes('squad')) {
-        const removed = await uninstallSquadCommand('claude');
+      if (components.includes('commands')) {
+        const removed = await uninstallCommands('claude');
         totalRemoved += removed;
       }
       if (components.includes('statusline')) {
@@ -81,8 +81,8 @@ async function main() {
         const removed = await uninstallFromGemini();
         totalRemoved += removed;
       }
-      if (components.includes('squad')) {
-        const removed = await uninstallSquadCommand('gemini');
+      if (components.includes('commands')) {
+        const removed = await uninstallCommands('gemini');
         totalRemoved += removed;
       }
     }
@@ -169,27 +169,43 @@ function uninstallAgents(sourceDir, targetDir, platformName) {
   return removedCount;
 }
 
-async function uninstallSquadCommand(platform) {
+async function uninstallCommands(platform) {
   const platformName = platform === 'claude' ? 'Claude Code' : 'Gemini CLI';
-  console.log(`\n🗑️  Uninstalling Squad Command from ${platformName}...`);
+  console.log(`\n🗑️  Uninstalling Commands from ${platformName}...`);
 
   const homeDir = os.homedir();
   const commandsDir = path.join(homeDir, `.${platform}`, 'commands');
-  const squadPath = path.join(commandsDir, 'squad.md');
 
-  if (fs.existsSync(squadPath)) {
-    try {
-      fs.unlinkSync(squadPath);
-      console.log(`✅ Removed squad.md from ${commandsDir}`);
-      return 1;
-    } catch (error) {
-      console.error(`❌ Failed to remove Squad Command:`, error.message);
-      return 0;
-    }
-  } else {
-    console.log(`ℹ️  Squad Command not found at ${squadPath}`);
+  if (!fs.existsSync(commandsDir)) {
+    console.log(`ℹ️  Commands directory not found at ${commandsDir}`);
     return 0;
   }
+
+  let removedCount = 0;
+  const commandFiles = ['squad.md', 'battle.md', 'my-coding-mbti.md'];
+
+  commandFiles.forEach(file => {
+    const filePath = path.join(commandsDir, file);
+    if (fs.existsSync(filePath)) {
+      try {
+        fs.unlinkSync(filePath);
+        console.log(`🗑️  Removed: ${file}`);
+        removedCount++;
+      } catch (error) {
+        console.error(`❌ Failed to remove ${file}:`, error.message);
+      }
+    } else {
+      console.log(`ℹ️  ${file} not found (already removed or never installed)`);
+    }
+  });
+
+  if (removedCount > 0) {
+    console.log(`✅ Successfully removed ${removedCount} commands from ${commandsDir}`);
+  } else {
+    console.log(`ℹ️  No commands were removed from ${platformName}`);
+  }
+
+  return removedCount;
 }
 
 async function uninstallStatusLine() {
