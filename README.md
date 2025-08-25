@@ -1,22 +1,25 @@
 # MBTI Coding Agents
 
 <p align="center">
-  <img src="resource/8bit_intp.gif" width="40" height="40">
-  <img src="resource/8bit_intj.gif" width="40" height="40">
-  <img src="resource/8bit_entj.gif" width="40" height="40">
-  <img src="resource/8bit_entp.gif" width="40" height="40">
-  <img src="resource/8bit_infj.gif" width="40" height="40">
-  <img src="resource/8bit_infp.gif" width="40" height="40">
-  <img src="resource/8bit_enfj.gif" width="40" height="40">
-  <img src="resource/8bit_enfp.gif" width="40" height="40">
-  <img src="resource/8bit_istj.gif" width="40" height="40">
-  <img src="resource/8bit_isfj.gif" width="40" height="40">
-  <img src="resource/8bit_estj.gif" width="40" height="40">
-  <img src="resource/8bit_esfj.gif" width="40" height="40">
-  <img src="resource/8bit_istp.gif" width="40" height="40">
-  <img src="resource/8bit_isfp.gif" width="40" height="40">
-  <img src="resource/8bit_estp.gif" width="40" height="40">
-  <img src="resource/8bit_esfp.gif" width="40" height="40">
+  <img src="resource/8bit_intp.gif" width="50" height="50">
+  <img src="resource/8bit_intj.gif" width="50" height="50">
+  <img src="resource/8bit_entj.gif" width="50" height="50">
+  <img src="resource/8bit_entp.gif" width="50" height="50">
+  <br>
+  <img src="resource/8bit_infj.gif" width="50" height="50">
+  <img src="resource/8bit_infp.gif" width="50" height="50">
+  <img src="resource/8bit_enfj.gif" width="50" height="50">
+  <img src="resource/8bit_enfp.gif" width="50" height="50">
+  <br>
+  <img src="resource/8bit_istj.gif" width="50" height="50">
+  <img src="resource/8bit_isfj.gif" width="50" height="50">
+  <img src="resource/8bit_estj.gif" width="50" height="50">
+  <img src="resource/8bit_esfj.gif" width="50" height="50">
+  <br>
+  <img src="resource/8bit_istp.gif" width="50" height="50">
+  <img src="resource/8bit_isfp.gif" width="50" height="50">
+  <img src="resource/8bit_estp.gif" width="50" height="50">
+  <img src="resource/8bit_esfp.gif" width="50" height="50">
 </p>
 
 <!-- Language Navigation -->
